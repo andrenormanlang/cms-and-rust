@@ -1,0 +1,2 @@
+@echo off
+curl.exe -X POST -H "Content-Type: application/json" -d "{\"title\":\"Markdown Test\",\"excerpt\":\"Testing all markdown features\",\"content\":\"# Markdown Test\n\n## Text Formatting\n\n**Bold text** and *italic text*\n\n## Code Block\n\n```rust\nfn main() {\n    println!(\\\"Hello world!\\\");\n}\n```\n\n## List\n\n- Item 1\n- Item 2\n- Item 3\n\n## Table\n\n| Header 1 | Header 2 |\n|----------|----------|\n| Cell 1   | Cell 2   |\n| Cell 3   | Cell 4   |\"}" http://localhost:8081/posts 

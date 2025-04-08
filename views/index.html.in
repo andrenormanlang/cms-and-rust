@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMS and Go Rust</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-rust.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markdown.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        }
+                    },
+                    typography: {
+                        DEFAULT: {
+                            css: {
+                                maxWidth: 'none',
+                                color: '#1f2937',
+                                a: {
+                                    color: '#0284c7',
+                                    '&:hover': {
+                                        color: '#0369a1',
+                                    },
+                                    textDecoration: 'none',
+                                },
+                                'code::before': {
+                                    content: '""',
+                                },
+                                'code::after': {
+                                    content: '""',
+                                },
+                                code: {
+                                    color: '#1f2937',
+                                    backgroundColor: '#f3f4f6',
+                                    padding: '0.2em 0.4em',
+                                    borderRadius: '0.25rem',
+                                    fontWeight: '400',
+                                },
+                                pre: {
+                                    backgroundColor: '#f3f4f6',
+                                    padding: '1em',
+                                    borderRadius: '0.5rem',
+                                    code: {
+                                        backgroundColor: 'transparent',
+                                        padding: '0',
+                                        color: 'inherit',
+                                        fontSize: 'inherit',
+                                    }
+                                },
+                            },
+                        },
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer components {
+            .markdown-content {
+                @apply prose prose-slate max-w-none prose-pre:p-0 prose-pre:bg-transparent;
+            }
+            .markdown-content pre {
+                @apply bg-gray-50 p-4 rounded-lg overflow-x-auto;
+            }
+            .markdown-content code:not(pre code) {
+                @apply bg-gray-50 px-2 py-1 rounded font-mono text-sm;
+            }
+            .markdown-content table {
+                @apply min-w-full divide-y divide-gray-300;
+            }
+            .markdown-content th {
+                @apply py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900;
+            }
+            .markdown-content td {
+                @apply whitespace-nowrap py-4 pl-4 pr-3 text-sm text-gray-500;
+            }
+            .markdown-content tbody {
+                @apply divide-y divide-gray-200;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <a href="/" class="text-xl font-bold text-primary-600">CMS and Go Rust</a>
+                    </div>
+                    <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                        {% for link in navbar.links %}
+                        <a href="{{ link.href }}" 
+                           class="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900 hover:text-primary-600"
+                           title="{{ link.title }}">
+                            {{ link.name }}
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="-mr-2 flex items-center sm:hidden">
+                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="space-y-8">
+            {% for post in posts %}
+            <article class="bg-white shadow rounded-lg overflow-hidden">
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">{{ post.title }}</h2>
+                    <div class="text-gray-600 mb-4">{{ post.excerpt | markdown }}</div>
+                    <div class="prose prose-slate max-w-none">{{ post.content | markdown }}</div>
+                    <div class="mt-6">
+                        <a href="/post/{{ post.post_id }}" 
+                           class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                            Read more
+                        </a>
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </main>
+
+    <script>
+        // Initialize Prism.js for syntax highlighting
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.querySelectorAll('pre code').forEach((block) => {
+                Prism.highlightElement(block);
+            });
+        });
+    </script>
+</body>
+</html>

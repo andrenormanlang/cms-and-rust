@@ -1,0 +1,10 @@
+[workspace]
+
+resolver="2"
+
+members = [
+	"cms-and-go-admin-app",
+	"cms-and-go-app"
+, "migration"]
+
+[env]

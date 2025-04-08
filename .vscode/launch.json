@@ -1,0 +1,37 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Launch Main App",
+      "program": "${workspaceFolder}\\target\\debug\\cms-and-go-app.exe",
+      "args": ["--config-file", "${workspaceFolder}\\cmsgo_config.toml"],
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Launch Admin App",
+      "program": "${workspaceFolder}\\target\\debug\\cms-and-go-admin-app.exe",
+      "args": ["--config-file", "${workspaceFolder}\\cmsgo_config.toml"],
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Launch Both Apps",
+      "preLaunchTask": "build-all",
+      "program": "${workspaceFolder}\\target\\debug\\cms-and-go-app.exe",
+      "args": ["--config-file", "${workspaceFolder}\\cmsgo_config.toml"],
+      "cwd": "${workspaceFolder}",
+      "postDebugTask": "launch-admin-app"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Main + Admin Apps",
+      "configurations": ["Launch Main App", "Launch Admin App"]
+    }
+  ]
+}
