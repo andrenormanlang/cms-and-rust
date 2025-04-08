@@ -1,4 +1,4 @@
-# 🚀 CMS Go Rust
+# 🚀 CMS & Rust
 
 A modern, fast, and secure Content Management System built with Rust and MySQL.
 
