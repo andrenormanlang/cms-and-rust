@@ -17,7 +17,7 @@
       "label": "launch-admin-app",
       "type": "shell",
       "command": "${workspaceFolder}\\target\\debug\\cms-and-g-admin-app.exe",
-      "args": ["--config-file", "${workspaceFolder}\\cmsgo_config.toml"],
+      "args": ["--config-file", "${workspaceFolder}\\cms_rust_config.toml"],
       "isBackground": true,
       "presentation": {
         "reveal": "always",

@@ -1,5 +1,5 @@
 use clap::Parser;
-// Remove direct CmsGoConfig import, it's handled in the block below
+// Remove direct CmsRustConfig import, it's handled in the block below
 use std::{
     fs::File,
     io::{self, Read}, // Add io
@@ -20,9 +20,9 @@ use axum::{
 use common::{
     markdown_filter,
     AppError,
-    CmsGoConfig,
+    CmsRustConfig,
     Database,
-    GetPostResponse, // Ensure CmsGoConfig is only here
+    GetPostResponse, // Ensure CmsRustConfig is only here
 };
 use minijinja::{context, Environment};
 use serde::Deserialize;
@@ -49,7 +49,7 @@ fn read_file<P: AsRef<std::path::Path>>(path: P) -> io::Result<String> {
 async fn try_main() -> anyhow::Result<()> {
     // Read the config
     let args = ProgramArgs::parse();
-    let config = Arc::new(CmsGoConfig::new(&args.config_file)?);
+    let config = Arc::new(CmsRustConfig::new(&args.config_file)?);
 
     // TODO : we probably don't want to print secrets ;)
     println!("config");
@@ -116,7 +116,7 @@ struct HomeHandlerParams {
 #[debug_handler]
 async fn home_handler(
     Extension(database_lock): Extension<DatabaseT>,
-    Extension(config): Extension<Arc<CmsGoConfig>>,
+    Extension(config): Extension<Arc<CmsRustConfig>>,
     Query(home_params): Query<HomeHandlerParams>,
 ) -> Result<Html<String>, Json<AppError>> {
     let database = database_lock.read().await;
@@ -164,7 +164,7 @@ async fn home_handler(
 #[debug_handler]
 async fn post_detail_handler(
     Extension(database_lock): Extension<DatabaseT>,
-    Extension(config): Extension<Arc<CmsGoConfig>>,
+    Extension(config): Extension<Arc<CmsRustConfig>>,
     Path(post_id): Path<i32>, // This should now correctly resolve to axum::extract::Path
 ) -> Result<Html<String>, Json<AppError>> {
     let database = database_lock.read().await;

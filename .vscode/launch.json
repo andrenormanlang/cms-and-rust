@@ -6,7 +6,7 @@
       "request": "launch",
       "name": "Launch Main App",
       "program": "${workspaceFolder}\\target\\debug\\cms-and-rust-app.exe",
-      "args": ["--config-file", "${workspaceFolder}\\cmsgo_config.toml"],
+      "args": ["--config-file", "${workspaceFolder}\\cms_rust_config.toml"],
       "cwd": "${workspaceFolder}"
     },
     {
@@ -14,7 +14,7 @@
       "request": "launch",
       "name": "Launch Admin App",
       "program": "${workspaceFolder}\\target\\debug\\cms-and-rust-admin-app.exe",
-      "args": ["--config-file", "${workspaceFolder}\\cmsgo_config.toml"],
+      "args": ["--config-file", "${workspaceFolder}\\cms_rust_config.toml"],
       "cwd": "${workspaceFolder}"
     },
     {
@@ -23,7 +23,7 @@
       "name": "Launch Both Apps",
       "preLaunchTask": "build-all",
       "program": "${workspaceFolder}\\target\\debug\\cms-and-rust-app.exe",
-      "args": ["--config-file", "${workspaceFolder}\\cmsgo_config.toml"],
+      "args": ["--config-file", "${workspaceFolder}\\cms_rust_config.toml"],
       "cwd": "${workspaceFolder}",
       "postDebugTask": "launch-admin-app"
     }

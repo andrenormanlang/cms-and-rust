@@ -1,9 +1,13 @@
 use clap::Parser;
-use common::CmsGoConfig;
+use common::CmsRustConfig;
 use std::sync::Arc;
 
 use axum::routing::{delete, get, post};
-use axum::{debug_handler, extract::{self, Query}, Extension, Json, Router};
+use axum::{
+    debug_handler,
+    extract::{self, Query},
+    Extension, Json, Router,
+};
 use common::{
     AddPostRequest, AddPostResponse, AppError, Database, DeletePostResponse, GetPostResponse,
 };
@@ -23,8 +27,12 @@ struct ProgramArgs {
 }
 
 // Define default pagination values
-fn default_offset() -> i32 { 0 }
-fn default_limit() -> i32 { 10 } // Or another sensible default
+fn default_offset() -> i32 {
+    0
+}
+fn default_limit() -> i32 {
+    10
+} // Or another sensible default
 
 // Struct for pagination query parameters
 #[derive(Deserialize)]
@@ -38,7 +46,7 @@ struct PaginationParams {
 async fn try_main() -> anyhow::Result<()> {
     // Read the config
     let args = ProgramArgs::parse();
-    let config = CmsGoConfig::new(&args.config_file)?;
+    let config = CmsRustConfig::new(&args.config_file)?;
 
     let database = Arc::new(RwLock::new(
         Database::new(&config.database_address, config.database_port).await?,
@@ -80,7 +88,9 @@ async fn get_posts_handler(
 ) -> Result<Json<Vec<GetPostResponse>>, AppError> {
     let database = database_lock.read().await;
     // Use pagination parameters when calling get_posts
-    let posts = database.get_posts(pagination.offset, pagination.limit).await?;
+    let posts = database
+        .get_posts(pagination.offset, pagination.limit)
+        .await?;
     Ok(Json(posts))
 }
 

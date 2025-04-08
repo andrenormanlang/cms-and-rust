@@ -11,7 +11,7 @@ mod config;
 mod posts;
 
 pub use app_error::AppError;
-pub use config::CmsGoConfig;
+pub use config::CmsRustConfig;
 pub use posts::{AddPostRequest, AddPostResponse, DeletePostResponse, GetPostResponse};
 
 /// Convert markdown to HTML using pulldown-cmark
@@ -48,8 +48,8 @@ pub struct Database {
 
 impl Database {
     pub async fn new(ip: &str, port: u16) -> anyhow::Result<Self> {
-        let config_path = std::env::current_dir()?.join("cmsgo_config.toml");
-        let config = CmsGoConfig::new(config_path.to_str().unwrap())?;
+        let config_path = std::env::current_dir()?.join("cms_rust_config.toml");
+        let config = CmsRustConfig::new(config_path.to_str().unwrap())?;
 
         // build the connection string using config values
         let conn_str = format!(

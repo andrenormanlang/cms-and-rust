@@ -19,7 +19,7 @@ pub struct NavbarConfig {
 }
 
 #[derive(Debug, Deserialize, Serialize)]
-pub struct CmsGoConfig {
+pub struct CmsRustConfig {
     // address to the database (just IP)
     pub database_address: String,
     // port of the database service
@@ -47,11 +47,11 @@ pub struct CmsGoConfig {
     pub navbar: NavbarConfig,
 }
 
-impl CmsGoConfig {
+impl CmsRustConfig {
     pub fn new(config_path: &str) -> anyhow::Result<Self> {
         let contents = fs::read_to_string(config_path).context("Failed to read config file")?;
 
-        let config: CmsGoConfig =
+        let config: CmsRustConfig =
             toml::from_str(&contents).context("Failed to parse config file")?;
 
         Ok(config)
