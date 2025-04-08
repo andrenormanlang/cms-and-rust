@@ -1,6 +1,6 @@
 # 🚀 CMS & Rust
 
-A modern, fast, and secure Content Management System built with Rust and MySQL.
+A modern, fast, and secure Content Management System built with Rust and MariaDB.
 
 ## ✨ Features
 
