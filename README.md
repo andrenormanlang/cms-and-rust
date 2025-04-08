@@ -59,7 +59,7 @@ cargo run
 ## 🌐 Usage
 
 - Main CMS: Visit `http://localhost:8080`
-- Admin Panel: Visit `http://localhost:3000`
+- Admin Panel: Visit `http://localhost:8081`
 
 ## 📝 API Endpoints
 
