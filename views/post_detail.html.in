@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CMS and Rust</title>
+    <title>{{ post.title }} - CMS and Rust</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
@@ -127,29 +127,21 @@
         </div>
     </nav>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {% for post in posts %}
-            <article class="bg-white shadow rounded-lg overflow-hidden flex flex-col">
-                <div class="p-6 flex-grow">
-                    <h2 class="text-xl font-bold text-gray-900 mb-2">{{ post.title }}</h2>
-                    <div class="text-gray-600 mb-4 text-sm line-clamp-3">{{ post.excerpt | markdown }}</div>
-                </div>
-                <div class="p-6 pt-0 mt-auto">
-                    <a href="/post/{{ post.post_id }}" 
-                       class="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
-                        Read more
-                    </a>
-                </div>
-            </article>
-            {% endfor %}
-        </div>
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <article class="bg-white shadow rounded-lg overflow-hidden">
+            <div class="p-6 md:p-8">
+                
+                <div class="text-lg text-gray-600 mb-6 italic prose prose-slate max-w-none markdown-content">{{ post.excerpt | markdown }}</div>
+                <hr class="my-6">
+                <div class="prose prose-slate max-w-none markdown-content">{{ post.content | markdown }}</div>
+            </div>
+        </article>
     </main>
 
     <script>
         // Initialize Prism.js for syntax highlighting
         document.addEventListener('DOMContentLoaded', (event) => {
-            document.querySelectorAll('pre code').forEach((block) => {
+            document.querySelectorAll('.markdown-content pre code').forEach((block) => {
                 Prism.highlightElement(block);
             });
         });

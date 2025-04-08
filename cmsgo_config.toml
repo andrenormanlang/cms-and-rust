@@ -12,7 +12,7 @@ database_port = 3306
 
 # name of database where urchin's
 # migrations was installed
-database_name = "cms_and_go_rust"
+database_name = "cms_and_rust"
 
 # port to run the webserver on
 webserver_port = 8080

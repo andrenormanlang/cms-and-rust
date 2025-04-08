@@ -1,5 +1,5 @@
 [package]
-name = "cms-and-go-admin-app"
+name = "cms-and-rust-admin-app"
 version = "0.1.0"
 edition = "2021"
 

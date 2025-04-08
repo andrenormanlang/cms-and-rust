@@ -3,8 +3,8 @@
 resolver="2"
 
 members = [
-	"cms-and-go-admin-app",
-	"cms-and-go-app"
+	"cms-and-rust-admin-app",
+	"cms-and-rust-app"
 , "migration"]
 
 [env]

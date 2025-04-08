@@ -16,7 +16,7 @@
     {
       "label": "launch-admin-app",
       "type": "shell",
-      "command": "${workspaceFolder}\\target\\debug\\cms-and-go-admin-app.exe",
+      "command": "${workspaceFolder}\\target\\debug\\cms-and-g-admin-app.exe",
       "args": ["--config-file", "${workspaceFolder}\\cmsgo_config.toml"],
       "isBackground": true,
       "presentation": {
