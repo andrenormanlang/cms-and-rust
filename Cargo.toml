@@ -1,10 +1,11 @@
 [workspace]
 
-resolver="2"
+resolver = "2"
 
 members = [
 	"cms-and-rust-admin-app",
-	"cms-and-rust-app"
-, "migration"]
+	"cms-and-rust-app",
+	"migration"
+]
 
 [env]
